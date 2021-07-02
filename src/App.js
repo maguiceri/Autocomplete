@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
+import Autocomplete from './Autocomplete';
 import './App.css';
+// ej : pasar info de hijo a padre;
+class App extends React.Component {
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  constructor (props) {
+    super(props) 
+
+    this.state = {
+      autocompleteValue : ''
+    }
+  }
+
+  handleCallback(newValue) {
+    this.setState({
+      autocompleteValue : newValue
+    })
+  }
+
+  render() {
+    return(
+      <div>
+        < Autocomplete handleCallback={(newValue) => {this.handleCallback(newValue)}}/> 
+      <p>{this.state.autocompleteValue}</p>
+      </div>
+    )
+  }
 }
 
 export default App;
